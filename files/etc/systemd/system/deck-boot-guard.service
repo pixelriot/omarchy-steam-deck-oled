@@ -1,0 +1,10 @@
+[Unit]
+Description=Keep the Deck boot order intact
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/deck-boot-guard
+
+[Install]
+WantedBy=multi-user.target

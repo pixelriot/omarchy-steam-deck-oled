@@ -1,0 +1,18 @@
+#!/usr/bin/ash
+
+run_hook() {
+    modprobe -q uinput >/dev/null 2>&1
+
+    if [ -x /usr/bin/buffyboard ]; then
+        /usr/bin/buffyboard -r 1 >/dev/null 2>&1 &
+        echo $! > /run/buffyboard.pid
+        sleep 1
+    fi
+}
+
+run_cleanuphook() {
+    if [ -f /run/buffyboard.pid ]; then
+        kill "$(cat /run/buffyboard.pid)" >/dev/null 2>&1
+        rm -f /run/buffyboard.pid
+    fi
+}

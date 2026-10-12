@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CONF=/etc/default/limine
+PATTERN='^[[:space:]]{0,8}BOOT_ORDER[[:space:]]{0,8}='
+WANT='BOOT_ORDER="linux-neptune-618, linux, *, *fallback, Snapshots"'
+
+MOUNTED_BY_US=0
+cleanup() {
+  if [ "$MOUNTED_BY_US" = "1" ]; then
+    umount /boot || logger -t deck-boot-guard "warning: could not unmount /boot"
+  fi
+}
+trap cleanup EXIT
+
+current=$(grep -E "$PATTERN" "$CONF" | tail -n 1 || true)
+if [ "$current" = "$WANT" ]; then
+  exit 0
+fi
+
+logger -t deck-boot-guard "BOOT_ORDER wrong or missing, repairing"
+mkdir -p /var/backups
+cp -a "$CONF" "/var/backups/limine.$(date +%s)"
+
+grep -vE "$PATTERN" "$CONF" > "$CONF.new" || true
+echo "$WANT" >> "$CONF.new"
+cat "$CONF.new" > "$CONF"
+rm -f "$CONF.new"
+chmod 644 "$CONF"
+
+if ! mountpoint -q /boot; then
+  mount /boot
+  MOUNTED_BY_US=1
+fi
+
+/usr/bin/limine-mkinitcpio
+logger -t deck-boot-guard "BOOT_ORDER restored"
