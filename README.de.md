@@ -7,7 +7,7 @@ Kein Dual-Boot. Ein System, zwei Sitzungen.
 
 *[English version](README.md)*
 
-**Das hier ist ein volles Omarchy, kein Fork und kein abgespecktes Abbild.**
+**Das hier ist ein volles Omarchy, kein Fork und kein vorgefertigtes Abbild.**
 Omarchy 4 wird mit seinem eigenen Installationsmedium installiert und bezieht
 seine Updates weiterhin über `omarchy-update`. Valves Kernel, Lüftersteuerung
 und Spielmodus-Pakete kommen einzeln und **namentlich** aus Valves Paketquellen
@@ -40,6 +40,47 @@ BIOS F7G0114, mit Omarchy 4.0.4 und `linux-neptune-618` 6.18.53.valve1.
 
 Für das LCD-Modell (Jupiter) sollte fast alles gelten; die Gerätenamen und
 die Lüfterkurve unterscheiden sich, die Logik nicht.
+
+---
+
+## Alternativen — und wann sie die bessere Wahl sind
+
+**[Pizzarchy](https://github.com/villenull/Pizzarchy)** macht etwas anderes als
+diese Anleitung, und für viele Leute macht es das Richtige. Es ist ein fertiges
+Installations-ISO von gut sechs Gigabyte, das sich allein mit den Knöpfen und
+Trackpads des Decks bedienen lässt — keine Tastatur, kein Terminal. WLAN-Passwort
+und Benutzername tippt man auf einer Bildschirmtastatur, den Rest erledigt der
+Installer. Er richtet ein angepasstes Omarchy-Abbild ein, nutzt Valves
+Neptune-Kernel und behält die gamescope-Spielsitzung.
+
+Wenn du Omarchy an einem Abend ohne Dock auf dein Deck bekommen willst, nimm
+Pizzarchy. Im Ernst.
+
+Diese Anleitung unterscheidet sich in drei Punkten:
+
+**Verschlüsselung, die sich ohne Tastatur aufschließen lässt.** Das ist der
+Kern. Die Platte ist LUKS-verschlüsselt, und die Bildschirmtastatur sitzt im
+initramfs — du entsperrst das verschlüsselte System mit dem Touchscreen allein.
+Pizzarchys README sagt zur Plattenverschlüsselung nichts; ob und wie es sie
+beherrscht, ist von außen nicht zu erkennen.
+
+**Unverändertes Omarchy statt eines angepassten Abbilds.** Hier wird Omarchy mit
+seinem eigenen Installationsmedium installiert und bleibt auf `omarchy-update`.
+Valves Pakete kommen einzeln und namentlich dazu. Nichts ist vorgebacken: Jede
+Abweichung vom Standard ist ein dokumentierter Befehl, den du lesen, auslassen
+oder rückgängig machen kannst.
+
+**Es erklärt sich selbst.** Das Ergebnis ist ein Dokument, kein Artefakt. Wenn in
+sechs Monaten ein Update etwas zerlegt, steht neben jeder Entscheidung, warum sie
+so getroffen wurde — und `deck-health` sagt dir, welche der vierzehn
+Eigenschaften gerade nicht mehr stimmt.
+
+Der Preis dafür ist ehrlich: rund drei Stunden, eine USB-Tastatur, ein Dock und
+die Bereitschaft, in einem Terminal zu arbeiten. Wer das nicht will, ist mit dem
+ISO oben besser bedient.
+
+*Stand Oktober 2026. Beide Projekte bewegen sich — im Zweifel beim jeweiligen
+Repository nachsehen, statt dieser Tabelle zu glauben.*
 
 ---
 

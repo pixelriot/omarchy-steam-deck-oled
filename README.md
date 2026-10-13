@@ -7,7 +7,7 @@ No dual boot. One system, two sessions.
 
 *[Deutsche Fassung](README.de.md)*
 
-**This is stock Omarchy, not a fork and not a trimmed-down image.** Omarchy 4
+**This is stock Omarchy, not a fork and not a prebuilt image.** Omarchy 4
 is installed from its own installer and keeps getting its updates through
 `omarchy-update`. Valve's kernel, fan control and game-mode packages are added
 individually and **by name** from Valve's repositories — nothing is removed,
@@ -38,6 +38,46 @@ with Omarchy 4.0.4 and `linux-neptune-618` 6.18.53.valve1.
 
 Almost all of it should apply to the LCD model (Jupiter) too; the device names
 and the fan curve differ, the logic does not.
+
+---
+
+## Alternatives, and when to prefer one
+
+**[Pizzarchy](https://github.com/villenull/Pizzarchy)** does something different
+from this guide, and for a lot of people it does the better thing. It is a
+ready-made installer ISO of about six gigabytes that you drive with the Deck's
+buttons and trackpads alone — no keyboard, no terminal. You type the Wi-Fi
+password and a username on an on-screen keyboard, and the installer handles the
+rest. It lays down a modified Omarchy image, uses Valve's Neptune kernel, and
+keeps the gamescope game session.
+
+If what you want is Omarchy on your Deck in one evening without a dock, use
+Pizzarchy. Genuinely.
+
+This guide differs in three ways:
+
+**Encryption you can unlock without a keyboard.** That is the heart of it. The
+disk is LUKS-encrypted and the on-screen keyboard lives in the initramfs, so you
+unlock the encrypted system with the touchscreen alone. Pizzarchy's README says
+nothing about disk encryption; whether and how it handles that is not visible
+from the outside.
+
+**Stock Omarchy rather than a modified image.** Here Omarchy is installed with
+its own installer and stays on `omarchy-update`. Valve's packages are added
+individually and by name. Nothing is pre-baked: every departure from the default
+is one documented command you can read, skip, or undo.
+
+**It explains itself.** The deliverable is a document, not an artefact. When an
+update breaks something six months from now, the reasoning sits next to every
+decision — and `deck-health` tells you which of the fourteen properties stopped
+being true.
+
+The cost is real and worth stating: roughly three hours, a USB keyboard, a dock,
+and a willingness to work in a terminal. If that is not what you want, the ISO
+above serves you better.
+
+*As of October 2026. Both projects move — check the respective repository rather
+than trusting this section.*
 
 ---
 
